@@ -1,0 +1,21 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /ecommerce/
+
+    # If the file or directory exists, serve it directly
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Otherwise, forward the request to index.php
+    RewriteRule ^(.*)$ index.php/$1 [L]
+
+    # Remove index.php from URLs
+    RewriteCond %{HTTP:X-Requested-With} !^XMLHttpRequest$
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/index\.php [NC]
+    RewriteRule ^index\.php/(.+)$ /$1 [R=301,NE,L]
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    # If we don't have mod_rewrite installed, all 404 errors are handled by index.php
+    ErrorDocument 404 /index.php
+</IfModule>

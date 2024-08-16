@@ -1,5 +1,14 @@
+<?php
+include(APPPATH .'views/layout/header.php');
+?>
+   <div class="section-header">
+   <h1>Tambah Shortcut</h1>
+            <div class="section-header-breadcrumb">
+              <div class="breadcrumb-item active"><a href="#">Shortcut</a></div>
+              <div class="breadcrumb-item"><a href="#">Create Shortcut</a></div>
+            </div>
+    </div>
 <div class="container">
-    <h1>Tambah Shortcut</h1>
     <?php echo validation_errors(); ?>
     <?php echo form_open('admin/shortcuts/create'); ?>
         <div class="form-group">

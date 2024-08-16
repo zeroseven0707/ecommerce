@@ -16,7 +16,7 @@ class License_model extends CI_Model {
         }
     }
     
-    public function create_license($data) {
+    public function insert_license($data) {
         return $this->db->insert('licenses', $data);
     }
     

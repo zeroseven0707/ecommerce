@@ -16,7 +16,7 @@ class Shortcut_model extends CI_Model {
         }
     }
     
-    public function create_shortcut($data) {
+    public function insert_shortcut($data) {
         return $this->db->insert('shortcuts', $data);
     }
     
