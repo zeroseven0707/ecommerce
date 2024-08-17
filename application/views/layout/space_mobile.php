@@ -1,9 +1,5 @@
-<div class="space_layout">
-<div class="space">
 <?php 
 $CI =& get_instance();
 $widgets_mobile = $CI->Widget_model->mobile();
     echo $widgets_mobile->value;
 ?>  
-</div>
-</div>

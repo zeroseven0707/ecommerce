@@ -39,7 +39,7 @@ include(APPPATH .'views/layout/header-client.php');
 
 
                 ?>
-                <h2 class="price">Rp <?php echo number_format($price_after_discount, 0, '', '.'); ?></h2>
+                <h2 class="price"><?php if($product->price == 0){ echo "Freebies"; }else{ echo "Rp ".number_format($price_after_discount, 0, '', '.');} ?></h2>
                 <p><?php echo $product->description; ?></p>
                 <a href="<?php echo site_url('buy-now/'.$product->id) ?>">
                     <button type="button" class="buynow">Beli Sekarang</button>

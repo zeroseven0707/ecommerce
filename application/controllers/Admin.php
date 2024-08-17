@@ -21,6 +21,7 @@ class Admin extends MY_Controller {
         $this->load->model('Contact_model');
         $this->load->model('Menu_model');
         $this->load->model('Guide_model');
+        $this->load->model('Theme_model');
         $this->load->helper('download');
         $this->load->database();
     }
@@ -325,18 +326,18 @@ public function remove_image($id)
     public function edit_widget($id)
     {
         $data['widget'] = $this->Widget_model->get_widgets($id);
-
-        $this->form_validation->set_rules('value', 'value', 'required');
+        
+        // Menghapus required dan hanya menggunakan trim
+        $this->form_validation->set_rules('value', 'value', 'trim');
         
         if ($this->form_validation->run() === FALSE) {
-            
             $this->load->view('admin/edit_widget', $data);
-            
         } else {
             $this->Widget_model->update_widget($id, $this->input->post());
             redirect('admin/widgets');
         }
     }
+    
       // Menu Management
       public function menu()
       {
@@ -679,6 +680,45 @@ public function remove_image($id)
             $value = str_replace('"', '""', $value); // Escape tanda kutip
             return '"' . $value . '"'; // Tambahkan tanda kutip di awal dan akhir
         }
-        
+        // Theme Management
+        public function theme() {
+            $data['themes'] = $this->Theme_model->get_all_themes();
+            $this->load->view('admin/theme', $data);
+        }
+    
+        public function create_theme() {
+            $this->form_validation->set_rules('header_color', 'Header Color', 'required');
+            $this->form_validation->set_rules('navbar_color', 'Navbar Color', 'required');
+            // Tambahkan rules untuk field lainnya sesuai kebutuhan
+    
+            if ($this->form_validation->run() === FALSE) {
+                $this->load->view('admin/create_theme');
+            } else {
+                $data = $this->input->post();
+                $this->Theme_model->create_theme($data);
+                redirect('admin/theme');
+            }
+        }
+    
+        public function edit_theme($id) {
+            $data['theme'] = $this->Theme_model->get_theme($id);
+    
+            $this->form_validation->set_rules('header_color', 'Header Color', 'required');
+            $this->form_validation->set_rules('navbar_color', 'Navbar Color', 'required');
+            // Tambahkan rules untuk field lainnya sesuai kebutuhan
+    
+            if ($this->form_validation->run() === FALSE) {
+                $this->load->view('admin/edit_theme', $data);
+            } else {
+                $data = $this->input->post();
+                $this->Theme_model->update_theme($id, $data);
+                redirect('admin/theme');
+            }
+        }
+    
+        public function delete_theme($id) {
+            $this->Theme_model->delete_theme($id);
+            redirect('admin/theme');
+        }
         
 }

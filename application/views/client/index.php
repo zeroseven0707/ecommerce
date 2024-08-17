@@ -44,10 +44,12 @@ include(APPPATH .'views/layout/header-client.php');
                                             </div>
                                         </div>
                                     </a>
+                                    <a href="<?php echo site_url('detail-product/'.$product->id); ?>">
                                     <div class="content_grid">
                                         <h4><?php echo $product->name; ?></h4>
                                         <a href="buy-now/<?php echo $product->id; ?>"><button>Beli</button></a>
                                     </div>
+                                    </a>
                                 </div>
                             <?php endforeach; } ?> 
                         </div>
@@ -95,18 +97,22 @@ include(APPPATH .'views/layout/header-client.php');
                                             </div>
                                         </div>
                                     </a>
+                                    <a href="<?php echo site_url('detail-product/'.$product->id); ?>">
                                     <div class="content_grid">
                                         <h4><?php echo $product->name; ?></h4>
                                         <a href="buy-now/<?php echo $product->id; ?>"><button>Beli</button></a>
                                     </div>
+                                    </a>
                                 </div>
                             <?php endforeach; } ?> 
                         </div>
                         <a href="<?php echo base_url('new-product') ?>" class="see_other">Lihat Lebih Banyak <iconify-icon icon="cil:arrow-right"></iconify-icon></a>
                     </div>
-                    <?php
+                   <div class="mobile-1">
+                   <?php
                     include(APPPATH .'views/layout/space_mobile.php');
                     ?>
+                   </div>
                     <div class="catalog_layout">
                         <h3>Semua Produk</h3>
                         <div class="catalog_grid">
@@ -140,18 +146,22 @@ include(APPPATH .'views/layout/header-client.php');
                                             </div>
                                         </div>
                                     </a>
+                                    <a href="<?php echo site_url('detail-product/'.$product->id); ?>">
                                     <div class="content_grid">
                                         <h4><?php echo $product->name; ?></h4>
                                         <a href="buy-now/<?php echo $product->id; ?>"><button>Beli</button></a>
                                     </div>
+                                    </a>
                                 </div>
                             <?php endforeach; } ?> 
                         </div>
                         <a href="<?php echo base_url('all') ?>" class="see_other">Lihat Lebih Banyak <iconify-icon icon="cil:arrow-right"></iconify-icon></a>
                     </div>
+                    <div class="mobile-2">
                     <?php
                     include(APPPATH .'views/layout/space_mobile2.php');
                     ?>
+                    </div>
                     <div class="catalog_layout">
                         <h3>Freebies</h3>
                         <div class="catalog_grid">
@@ -187,10 +197,12 @@ include(APPPATH .'views/layout/header-client.php');
                                             </div>
                                         </div>
                                     </a>
+                                    <a href="<?php echo site_url('detail-product/'.$product->id); ?>">
                                     <div class="content_grid">
                                         <h4><?php echo $product->name; ?></h4>
                                         <a href="buy-now/<?php echo $product->id; ?>"><button>Beli</button></a>
                                     </div>
+                                    </a>
                                 </div>
                             <?php endforeach; } ?> 
                         </div>

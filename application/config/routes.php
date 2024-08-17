@@ -64,7 +64,7 @@ $route['catalog'] = 'client/catalog';
 $route['new-product'] = 'client/product_last';
 $route['all'] = 'client/all';
 $route['product-terlaris'] = 'client/product_terlaris';
-$route['lisensi'] = 'client/lisensi';
+$route['license'] = 'client/lisensi';
 $route['guide'] = 'client/guide';
 $route['contact'] = 'client/contact';
 $route['product/search'] = 'client/search';
@@ -88,6 +88,11 @@ $route['admin/guides'] = 'admin/guides';
 $route['admin/guides/create'] = 'admin/create_guide';
 $route['admin/guides/edit/(:num)'] = 'admin/edit_guide/$1';
 $route['admin/guides/delete/(:num)'] = 'admin/delete_guide/$1';
+
+$route['admin/theme'] = 'admin/theme';
+$route['admin/theme/create'] = 'admin/create_theme';
+$route['admin/theme/edit/(:num)'] = 'admin/edit_theme/$1';
+$route['admin/theme/delete/(:num)'] = 'admin/delete_theme/$1';
 
 
 $route['admin/widgets'] = 'admin/widgets';
