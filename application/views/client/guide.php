@@ -7,7 +7,7 @@ include(APPPATH .'views/layout/header-client.php');
                 }else{
                     foreach ($guide as $guide): 
                 ?>
-                <div class="card" style="margin: 3vw auto;">
+                <div class="card" style="margin: 3vw auto; background-color: <?= get_setting('box_license') ?>;">
                     <div class="card-content">
                         <h3 class="card-title"><?= $guide->title ?></h3>
                         <p class="card-text"><?=  $guide->description ?></p>

@@ -1,6 +1,41 @@
 </div>
+</div>
+</div>
+<?php if(get_setting('footer') == true){ ?>
+<div class="footer-two">
+    <div class="logo-footer">
+        <div>
+            <img src="<?php echo base_url('uploads/') . get_setting('image_footer'); ?>" alt="">
+        </div>
+        <div>
+            <p class="cpy"><?= get_setting('copyright') ?></p>
         </div>
     </div>
+    <div>
+        <p>Mari berlangganan informasi situs ini </p>
+        <form action="<?php echo site_url('trafficts'); ?>" method="post">
+            <div>
+                <input type="text" placeholder="Nama" name="name">
+            </div>
+            <div>
+                <input type="text" placeholder="Email" name="email">
+            </div>
+            <button type="submit">Berlangganan</button>
+        </form>
+    </div>
+    <div>
+        <ul>
+            <?php
+        $CI =& get_instance();
+        $shortcut_items = $CI->Shortcut_model->get_shortcuts();
+        ?>
+        <?php foreach ($shortcut_items as $item): ?>
+            <li><a href="<?= $item->link ?>"><?= $item->title ?></a></li>
+        <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+<?php } ?>
     <script>
         document.querySelector('.hamburger').addEventListener('click', function() {
             const sidebar = document.querySelector('.sidebar');

@@ -12,7 +12,8 @@ include(APPPATH .'views/layout/header.php');
     <div class="col-12">
     <div class="card" style="border-radius: 2.3vw;">
     <div class="card-body">
-        <table class="table table-responsive">
+    <div class="table-responsive">
+    <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Judul</th>
@@ -27,12 +28,13 @@ include(APPPATH .'views/layout/header.php');
                         <td><?php echo $guide->description; ?></td>
                         <td>
                             <a href="<?php echo site_url('admin/guides/edit/' . $guide->id); ?>" class="btn btn-warning">Edit</a>
-                            <a href="<?php echo site_url('admin/guides/delete/' . $guide->id); ?>" class="btn btn-danger">Delete</a>
+                            <a href="<?php echo site_url('admin/guides/delete/' . $guide->id); ?>" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+    </div>
     </div>
     </div>
     </div>

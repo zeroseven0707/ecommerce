@@ -11,7 +11,7 @@
         $menu_items = $CI->Menu_model->get_menus();
         ?>
         <?php foreach ($menu_items as $item): ?>
-            <div class="space_side"><a href="<?= $item->link ?>" style="width:100%; color: white;"><?= $item->title ?></a></div>
+            <a href="<?= $item->link ?>"><div class="space_side"><img src="<?= base_url('uploads/icons/'.$item->icon) ?>" style="width: 2vw;" alt=""> &nbsp; <?= $item->title ?></div></a>
          <?php endforeach; ?>
     <div class="space_layout_dekstop">
          <?php 
@@ -22,6 +22,7 @@
     </div>
     <ul>
     <?php
+     if(get_setting('footer') == false){ 
         $CI =& get_instance();
         $shortcut_items = $CI->Shortcut_model->get_shortcuts();
         ?>
@@ -31,6 +32,6 @@
         <!-- <li><a href="#">Privacy Policy</a></li>
         <li><a href="#">About</a></li> -->
     </ul>
-    <span><?php echo get_setting('copyright'); ?></span>
+    <span><?php echo get_setting('copyright'); }?></span>
     <!-- <span>Copyright ©️ Produk Digital 2024</span> -->
 </div>

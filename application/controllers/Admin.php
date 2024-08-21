@@ -22,6 +22,7 @@ class Admin extends MY_Controller {
         $this->load->model('Menu_model');
         $this->load->model('Guide_model');
         $this->load->model('Theme_model');
+        $this->load->model('Traffict_model');
         $this->load->helper('download');
         $this->load->database();
     }
@@ -56,7 +57,8 @@ class Admin extends MY_Controller {
     // }
     public function create_product()
     {
-        $this->form_validation->set_rules('name', 'Nama Produk', 'required');
+        // Aturan validasi
+        $this->form_validation->set_rules('name', 'Nama Produk', 'required|callback_check_unique_product_name');
         $this->form_validation->set_rules('price', 'Harga Produk', 'required|numeric');
     
         if ($this->form_validation->run() === FALSE) {
@@ -106,7 +108,7 @@ class Admin extends MY_Controller {
                 }
             }
     
-            // Merge image links and uploaded images, limit to 3
+            // Gabungkan image links dan uploaded images, batasi sampai 3
             $data['images'] = json_encode(array_slice(array_filter(array_merge($image_links, $uploaded_images)), 0, 3));
     
             if ($data['discount'] == null) {
@@ -116,11 +118,25 @@ class Admin extends MY_Controller {
                 $data['discount'] = 1;
             }
     
-            // Save product data
+            // Simpan data produk
             $this->Product_model->create_product($data);
             redirect('admin/products');
         }
     }
+    
+    // Callback untuk validasi nama produk unik
+    public function check_unique_product_name($name)
+    {
+        $existing_product = $this->Product_model->get_products_by_name($name);
+        
+        if ($existing_product) {
+            $this->form_validation->set_message('check_unique_product_name', 'Nama produk sudah ada. Silakan pilih nama lain.');
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+    
     
 public function validate_image_links($links)
 {
@@ -353,37 +369,92 @@ public function remove_image($id)
           $this->form_validation->set_rules('link', 'Link', 'required');
           
           if ($this->form_validation->run() === FALSE) {
-              
               $this->load->view('admin/create_menu');
-              
           } else {
-              $this->Menu_model->insert_menu($this->input->post());
+              $config['upload_path'] = './uploads/icons/';
+              $config['allowed_types'] = 'jpg|jpeg|png|gif';
+              $config['max_size'] = 2048; // 2MB
+          
+              $this->load->library('upload', $config);
+              $this->upload->initialize($config);
+    
+              if ($this->upload->do_upload('icon')) {
+                  $icon_data = $this->upload->data();
+                  $uploaded_images[] = base_url($uploadPath.$fileData['file_name']);
+              }
+      
+              if ($this->upload->do_upload('icon')) {
+                  $icon_data = $this->upload->data();
+                  $menu_data = $this->input->post();
+                  $menu_data['icon'] = $icon_data['file_name'];
+                  $this->Menu_model->insert_menu($menu_data);
+              } else {
+                  // Handle upload error
+                  $data['upload_error'] = $this->upload->display_errors();
+                  $this->load->view('admin/create_menu', $data);
+                  return;
+              }
+      
               redirect('admin/menu');
           }
-      }
+      }      
   
       public function edit_menu($id)
       {
-          $data['shortcut'] = $this->Menu_model->get_menus($id);
-  
+          $data['menu'] = $this->Menu_model->get_menus($id);
+      
           $this->form_validation->set_rules('title', 'Judul', 'required');
           $this->form_validation->set_rules('link', 'Link', 'required');
           
           if ($this->form_validation->run() === FALSE) {
-              
               $this->load->view('admin/edit_menu', $data);
-              
           } else {
-              $this->Menu_model->update_menu($id, $this->input->post());
+              $config['upload_path'] = './uploads/icons/';
+              $config['allowed_types'] = 'jpg|jpeg|png|gif';
+              $config['max_size'] = 2048; // 2MB
+          
+              $this->load->library('upload', $config);
+      
+              $menu_data = $this->input->post();
+      
+              if ($this->upload->do_upload('icon')) {
+                  // Delete old icon if exists
+                  if (file_exists('./uploads/icons/' . $data['menu']->icon)) {
+                      unlink('./uploads/icons/' . $data['menu']->icon);
+                  }
+      
+                  $icon_data = $this->upload->data();
+                  $menu_data['icon'] = $icon_data['file_name'];
+              }
+      
+              $this->Menu_model->update_menu($id, $menu_data);
               redirect('admin/menu');
           }
-      }
+      }      
   
       public function delete_menu($id)
       {
-          $this->Menu_model->delete_menu($id);
-          redirect('admin/menu');
+          // Dapatkan data menu berdasarkan ID
+          $menu = $this->Menu_model->get_menus($id);
+          
+          // Jika menu ditemukan
+          if ($menu) {
+              // Hapus file icon dari server jika ada
+              if ($menu->icon && file_exists('./uploads/icons/' . $menu->icon)) {
+                  unlink('./uploads/icons/' . $menu->icon);
+              }
+              
+              // Hapus data menu dari database
+              $this->Menu_model->delete_menu($id);
+              
+              // Redirect ke halaman daftar menu
+              redirect('admin/menu');
+          } else {
+              // Jika menu tidak ditemukan, tampilkan pesan error atau redirect
+              show_404();
+          }
       }
+      
     // Shortcut Management
     public function shortcuts()
     {
@@ -433,6 +504,7 @@ public function remove_image($id)
 
  // Menampilkan halaman pengaturan
  public function settings() {
+    $data['theme'] = $this->Theme_model->get_all_themes();
     $data['settings'] = $this->Setting_model->get_settings();
     $this->load->view('admin/settings', $data);
 }
@@ -441,20 +513,30 @@ public function remove_image($id)
         public function update_setting() {
             // Validasi form
             $this->form_validation->set_rules('site_name', 'Nama Web', 'required');
+            $this->form_validation->set_rules('theme', 'Tema', 'required'); // Tambahkan validasi untuk tema
         
             if ($this->form_validation->run() === FALSE) {
                 $data['settings'] = $this->Setting_model->get_settings();
+                $data['theme'] = $this->Setting_model->get_all_themes(); // Pastikan kamu mendapatkan daftar tema
                 $this->load->view('admin/settings', $data);
             } else {
                 $settings = $this->Setting_model->get_settings();
+                if($this->input->post('footer') == true){
+                    $footer = true;
+                }else{
+                    $footer = false;
+                }
                 $data = array(
+                    'theme' => $this->input->post('theme'),
                     'title' => $this->input->post('title'),
                     'site_name' => $this->input->post('site_name'),
                     'meta_description' => $this->input->post('meta_description'),
                     'text_body' => $this->input->post('text_body'),
-                    'copyright' => $this->input->post('copyright')
+                    'mata_uang' => $this->input->post('mata_uang'),
+                    'number_format' => $this->input->post('number_format'),
+                    'copyright' => $this->input->post('copyright'),
+                    'footer' =>$footer 
                 );
-        
                 // Proses upload logo
                 if (!empty($_FILES['logo']['name'])) {
                     $config['upload_path'] = './uploads/';
@@ -478,29 +560,50 @@ public function remove_image($id)
                     }
                 }
                 
-                    // Proses upload image_body
-                    if (!empty($_FILES['image_body']['name'])) {
-                        $config['upload_path'] = './uploads/';
-                        $config['allowed_types'] = 'gif|jpg|png|ico|webp|svg|jpeg';
-                        $config['max_size'] = 2048; // 2MB
-                        $config['file_name'] = time() . '_' . $_FILES['image_body']['name']; // Pastikan nama file unik
-            
-                        $this->upload->initialize($config);
-            
-                        if ($this->upload->do_upload('image_body')) {
-                            // Hapus image_body lama jika ada
-                            if ($settings && !empty($settings->image_body)) {
-                                @unlink('./uploads/' . $settings->image_body);
-                            }
-            
-                            $upload_data = $this->upload->data();
-                            $data['image_body'] = $upload_data['file_name'];
-                        } else {
-                            $this->session->set_flashdata('error', $this->upload->display_errors());
-                            redirect('admin/settings');
+                // Proses upload image_body
+                if (!empty($_FILES['image_body']['name'])) {
+                    $config['upload_path'] = './uploads/';
+                    $config['allowed_types'] = 'gif|jpg|png|ico|webp|svg|jpeg';
+                    $config['max_size'] = 2048; // 2MB
+                    $config['file_name'] = time() . '_' . $_FILES['image_body']['name'];
+        
+                    $this->upload->initialize($config);
+        
+                    if ($this->upload->do_upload('image_body')) {
+                        if ($settings && !empty($settings->image_body)) {
+                            @unlink('./uploads/' . $settings->image_body);
                         }
+        
+                        $upload_data = $this->upload->data();
+                        $data['image_body'] = $upload_data['file_name'];
+                    } else {
+                        $this->session->set_flashdata('error', $this->upload->display_errors());
+                        redirect('admin/settings');
                     }
+                }
 
+                // Proses upload image_footer
+                if (!empty($_FILES['image_footer']['name'])) {
+                    $config['upload_path'] = './uploads/';
+                    $config['allowed_types'] = 'gif|jpg|png|ico|webp|svg|jpeg';
+                    $config['max_size'] = 2048; // 2MB
+                    $config['file_name'] = time() . '_' . $_FILES['image_footer']['name']; 
+        
+                    $this->upload->initialize($config);
+        
+                    if ($this->upload->do_upload('image_footer')) {
+                        if ($settings && !empty($settings->image_footer)) {
+                            @unlink('./uploads/' . $settings->image_footer);
+                        }
+        
+                        $upload_data = $this->upload->data();
+                        $data['image_footer'] = $upload_data['file_name'];
+                    } else {
+                        $this->session->set_flashdata('error', $this->upload->display_errors());
+                        redirect('admin/settings');
+                    }
+                }
+        
                 // Proses upload favicon
                 if (!empty($_FILES['favicon']['name'])) {
                     $config['upload_path'] = './uploads/';
@@ -537,6 +640,7 @@ public function remove_image($id)
                 redirect('admin/settings');
             }
         }
+        
         public function import_products(){
             $this->load->view('admin/import-product');
         }
@@ -565,6 +669,16 @@ public function remove_image($id)
         
                 // Proses setiap baris data
                 while (($row = fgetcsv($file)) !== FALSE) {
+                    $product_name = $row[0];
+                    
+                    // Periksa apakah produk dengan nama yang sama sudah ada
+                    $existing_product = $this->Product_model->get_products_by_name($product_name);
+                    
+                    if ($existing_product) {
+                        // Lewati produk jika sudah ada
+                        continue;
+                    }
+        
                     $data = array(
                         'name'        => $row[0],
                         'buy_link'    => $row[1],
@@ -594,6 +708,7 @@ public function remove_image($id)
         
             redirect('admin/products');
         }
+        
         
         
         public function contact() {
@@ -712,13 +827,53 @@ public function remove_image($id)
             } else {
                 $data = $this->input->post();
                 $this->Theme_model->update_theme($id, $data);
-                redirect('admin/theme');
+                redirect($this->input->server('HTTP_REFERER'));
             }
         }
     
         public function delete_theme($id) {
             $this->Theme_model->delete_theme($id);
             redirect('admin/theme');
+        }
+        // Traffict Management
+        public function trafficts() {
+            $data['trafficts'] = $this->Traffict_model->get_all_trafficts();
+            $this->load->view('admin/trafficts', $data);
+        }
+    
+        public function trafficts_export_csv() {
+            $traffict_ids = $this->input->post('traffict_ids');
+    
+            if (!empty($traffict_ids)) {
+                // Ambil data berdasarkan ID yang dipilih
+                $this->db->where_in('id', $traffict_ids);
+                $this->db->select('name, email');
+                $query = $this->db->get('trafficts');
+                $trafficts = $query->result_array();
+    
+                // Nama file CSV
+                $filename = 'trafficts_export_' . date('Ymd') . '.csv';
+                header('Content-Type: text/csv');
+                header('Content-Disposition: attachment;filename="' . $filename . '"');
+    
+                // Buka file CSV untuk output
+                $f = fopen('php://output', 'w');
+    
+                // Tambahkan header kolom ke CSV
+                fputcsv($f, array('Name', 'Email'));
+    
+                // Tambahkan data ke CSV
+                foreach ($trafficts as $row) {
+                    fputcsv($f, $row);
+                }
+    
+                // Tutup file CSV
+                fclose($f);
+                exit;
+            } else {
+                // Jika tidak ada yang dipilih, kembali ke halaman sebelumnya
+                redirect('admin/trafficts');
+            }
         }
         
 }

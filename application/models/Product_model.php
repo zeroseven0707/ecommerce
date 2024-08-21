@@ -15,6 +15,10 @@ class Product_model extends CI_Model {
         $query = $this->db->get('products');
         return $query->result();
     }
+    public function get_products_by_name($name) {
+        $query = $this->db->get_where('products', ['name' => $name]);
+        return $query->row();
+    }
 
     public function get_product_by_id($id)
 {

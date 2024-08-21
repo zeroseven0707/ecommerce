@@ -16,7 +16,7 @@ include(APPPATH .'views/layout/header.php');
                   <div class="card-body">
                     <div class="table-responsive">
                       <!-- <table class="table table-striped" id="table-1"> -->
-                      <table class="table table-striped">
+                      <table class="table table-striped table-responsive-xl">
                         <thead>                                 
                           <tr>
                             <th class="text-center">

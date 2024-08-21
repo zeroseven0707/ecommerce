@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Modules &rsaquo; DataTables &mdash; Admin Control</title>
+  <title>Admin Control</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="<?php echo base_url('assets/modules/bootstrap/css/bootstrap.min.css'); ?>">
@@ -27,6 +27,13 @@
 
     gtag('config', 'UA-94034622-3');
   </script>
+  <style>
+    @media (max-width:768px) {
+    .navbar{
+      width: 85%;
+    }
+    }
+  </style>
   <!-- /END GA -->
 </head>
 <body>
@@ -38,7 +45,7 @@ $username = $CI->session->userdata('username');
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
       <!-- <div class="navbar-bg"></div> -->
-      <nav class="navbar navbar-expand-lg main-navbar bg-primary" style="border-radius: 30px;">
+      <nav class="navbar navbar-expand-lg main-navbar bg-primary mt-2" style="border-radius: 30px; margin:auto;">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
@@ -50,11 +57,11 @@ $username = $CI->session->userdata('username');
             <img alt="image" src="<?php echo base_url('assets/img/avatar/avatar-1.png'); ?>" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hi, <?= $username ?></div></a>
          <!-- Logout -->
-          <div class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-menu dropdown-menu-right" style="border-radius: 1vw;">
             <div class="dropdown-divider"></div>
             <form action="<?php echo site_url('auth/logout'); ?>" method="post" id="logout-form">
-              <button type="submit" class="dropdown-item has-icon text-danger" style="border: none; background: none;">
-                <i class="fas fa-sign-out-alt"></i> Logout
+              <button type="submit" class="dropdown-item has-icon text-danger" style="border-radius: 10vw; background: none; height: 3vw;">
+                <i class="fas fa-sign-out-alt">Logout</i> 
               </button>
             </form>
           </div>
@@ -67,7 +74,7 @@ $username = $CI->session->userdata('username');
             <a href="index.html">Admin Control</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">Admin Control</a>
+            <a href="index.html">Admin</a>
           </div>
           <ul class="sidebar-menu">
           <li>
@@ -82,6 +89,7 @@ $username = $CI->session->userdata('username');
                 <span>&nbsp; Product</span>
               </a>
             </li>
+            <li>
             <li>
               <a class="nav-link" href="<?php echo site_url('admin/licenses'); ?>">
               <iconify-icon icon="tabler:award" width="23" height="23"></iconify-icon>
@@ -116,6 +124,19 @@ $username = $CI->session->userdata('username');
               <a class="nav-link" href="<?php echo site_url('admin/guides'); ?>">
               <iconify-icon icon="tabler:album" width="23" height="23"></iconify-icon>
                 <span>&nbsp; Guide</span>
+              </a>
+            </li>
+            <li>
+            <li>
+              <a class="nav-link" href="<?php echo site_url('admin/theme'); ?>">
+              <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.5 17H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v8.5M3 13h13.5M8 21h4.5M10 17l-.5 4m6.5-2h6m-3-3v6"/></svg>
+                <span>&nbsp; Theme</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="<?php echo site_url('admin/trafficts'); ?>">
+              <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0-8 0m8 12h6m-3-3v6M6 21v-2a4 4 0 0 1 4-4h4"/></svg>
+                <span>&nbsp; Traffict</span>
               </a>
             </li>
             <li>

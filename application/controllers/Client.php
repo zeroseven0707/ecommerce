@@ -16,6 +16,7 @@ class Client extends CI_Controller {
         $this->load->model('Shortcut_model');
         $this->load->model('Setting_model');
         $this->load->model('Guide_model');
+        $this->load->model('Traffict_model');
     }
 
     public function index() {
@@ -36,6 +37,7 @@ class Client extends CI_Controller {
     public function detail_product($id)
     {
         $data['active_page'] = 'home';
+        $data['top_purchased_products'] = $this->Product_purchase_model->get_product_purchases_in_detail();
         $this->Product_view_model->click_product_view($id, $this->input->post());
         $data['product'] = $this->Product_model->get_products($id);
         $this->load->view('client/product-detail', $data);
@@ -93,4 +95,12 @@ class Client extends CI_Controller {
            $data['active_page'] = 'contact';
         $this->load->view('client/contact',$data);
     } 
+    public function create_traffict() {
+        $data = array(
+            'name' => $this->input->post('name'),
+            'email' => $this->input->post('email')
+        );
+        $this->Traffict_model->insert_traffict($data);
+        redirect($this->input->server('HTTP_REFERER'));
+    }
 }

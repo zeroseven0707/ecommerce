@@ -3,10 +3,9 @@ include(APPPATH .'views/layout/header.php');
 ?>
 <style>
   ul li {
-    margin-bottom: 0.6vw; /* Atur jarak sesuai keinginan, misalnya 5px */
-    padding: 0; /* Pastikan padding tidak menambah jarak */
+    margin-bottom: 0.6vw; 
+    padding: 0; 
 }
-
 </style>
   <div class="section-header">
     <h1>Dashboard</h1>

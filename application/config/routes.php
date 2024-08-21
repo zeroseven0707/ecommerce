@@ -69,6 +69,7 @@ $route['guide'] = 'client/guide';
 $route['contact'] = 'client/contact';
 $route['product/search'] = 'client/search';
 $route['product-promo'] = 'client/promo';
+$route['trafficts'] = 'client/create_traffict';
 
 $route['admin'] = 'admin/dashboard';
 $route['admin/products'] = 'admin/products';
@@ -77,7 +78,6 @@ $route['admin/products-views'] = 'admin/product_views';
 $route['admin/products/create'] = 'admin/create_product';
 $route['admin/products/edit/(:num)'] = 'admin/edit_product/$1';
 $route['admin/products/delete/(:num)'] = 'admin/delete_product/$1';
-$route['export-products-csv'] = 'admin/export_csv';
 
 $route['admin/licenses'] = 'admin/licenses';
 $route['admin/licenses/create'] = 'admin/create_license';
@@ -116,6 +116,10 @@ $route['admin/settings/update'] = 'admin/update_setting';
 $route['admin/contact'] = 'admin/contact';
 $route['admin/contact/save'] = 'admin/save_contact';
 
-// Import Product
+$route['admin/trafficts'] = 'admin/trafficts';
+// Import/Export Product
 $route['import-products'] = 'admin/import_products';
 $route['import-products-csv'] = 'admin/import_csv';
+$route['trafficts/export_csv'] = 'admin/trafficts_export_csv';
+$route['export-products-csv'] = 'admin/export_csv';
+

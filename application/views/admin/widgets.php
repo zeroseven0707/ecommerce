@@ -8,7 +8,7 @@ include(APPPATH .'views/layout/header.php');
             </div>
     </div>
 <div class="container">
-    <table class="table table-responsive">
+    <table class="table table-striped table-responsive-xl">
         <thead>
             <tr>
                 <th>Judul</th>

@@ -31,7 +31,7 @@ include(APPPATH .'views/layout/header-client.php');
 
 
                                                 ?>
-                                                <span><?php if($product->price == 0){ echo "Freebies"; }else if($product->discount == true){ echo "<small style='color:red;'>Rp. ". number_format($product->price, 0, '', '.')."</small><br><p>Rp. ".$price_after_discount."</p>" ; }else{ echo "Rp. ". number_format($product->price, 0, '', '.'); } ?></span>
+                                                <span><?php if($product->price == 0){ echo "Freebies"; }else if($product->discount == true){ echo "<small style='color:red;'>".get_setting('mata_uang')." ".number_format($product->price, 0, '', get_setting('number_format'))."</small><br><p>".get_setting('mata_uang')." ".$price_after_discount."</p>" ; }else{ echo get_setting('mata_uang')." ".number_format($product->price, 0, '', get_setting('number_format')); } ?></span>
                                             </div>
                             </div>
                         </a>

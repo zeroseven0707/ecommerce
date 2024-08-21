@@ -25,7 +25,7 @@
                                                     // Menghitung harga setelah diskon
                                                     $price_after_discount = $original_price - $discount_amount;
                                                 ?>
-                                                <span><?php if($product->price == 0){ echo "Freebies"; }else if($product->discount == true){ echo "<small><strike style='color:red;'>Rp ". number_format($product->price, 0, '', '.')."</strike></small><br><p>Rp ".number_format($price_after_discount, 0, '', '.')."</p>" ; }else{ echo "Rp ". number_format($product->price, 0, '', '.'); } ?></span>
+                                                 <span><?php if($product->price == 0){ echo "Freebies"; }else if($product->discount == true){ echo "<small><strike style='color:red;'>".get_setting('mata_uang'). number_format($product->price, 0, '', get_setting('number_format'))."</strike></small><br><p>".get_setting('mata_uang').number_format($price_after_discount, 0, '', get_setting('number_format'))."</p>" ; }else{ echo get_setting('mata_uang')." ". number_format($product->price, 0, '', get_setting('number_format')); } ?></span>
                                             </div>
                                     </div>
                                 </a>

@@ -22,3 +22,6 @@ include(APPPATH .'views/layout/header.php');
         <button type="submit" class="btn btn-primary">Tambah Shortcut</button>
     </form>
 </div>
+<?php
+include(APPPATH .'views/layout/footer.php');
+?>
