@@ -7,10 +7,7 @@ include(APPPATH .'views/layout/header.php');
     padding: 0; 
 }
 </style>
-  <div class="section-header">
-    <h1>Dashboard</h1>
-  </div>
-  <div class="row">
+  <div class="row mt-4">
   <div class="col-lg-12 col-md-12 col-sm-12 col-12">
       <div class="card card-statistic-1" style="border-radius: 25px;">
         <div class="card-icon bg-primary" style="border-radius: 30px; color: white; display: flex; align-items: center; justify-content: center;">

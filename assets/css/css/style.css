@@ -84,6 +84,7 @@ width: max-content;
 .layout_sidebar_dekstop{
     margin-right: 1vw;
     margin-top: .4vw;
+    padding-left: 1vw;
     display: block;
 }
 .layout_content_dekstop::-webkit-scrollbar {
@@ -783,5 +784,9 @@ padding-left: 12vw;
         background-color: #0056b3;
     }
 }
+@media (min-width:768px) and (max-width:1024px) {
     /* Untuk perangkat tablet dalam orientasi potrait */
-    
+    .footer-two{
+        height: 20.2vw;
+    }
+}

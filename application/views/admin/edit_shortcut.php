@@ -1,11 +1,7 @@
 <?php
 include(APPPATH .'views/layout/header.php');
 ?>
-
-  <div class="section-header">
-    <h1>Edit Shortcut</h1>
-  </div>
-  <div class="container">
+  <div class="container mt-4">
     <?php echo validation_errors(); ?>
     <?php echo form_open('admin/shortcuts/edit/' . $shortcut->id); ?>
         <div class="form-group">

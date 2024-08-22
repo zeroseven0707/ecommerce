@@ -1,12 +1,10 @@
 <?php
 include(APPPATH .'views/layout/header.php');
 ?>
-<div class="section-header">
-    <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?php echo base_url('dashboard')?>">Dashboard</a></div>
-        <div class="breadcrumb-item"><a href="#">Trafficts</a></div>
-    </div>
-</div>
+ <div class="section-body mt-4">
+    <div class="col-12">
+    <div class="card">
+    <div class="card-body">
     <form action="<?php echo site_url('trafficts/export_csv'); ?>" method="post">
     <p>
             <input type="submit" class="btn btn-primary" value="Export to CSV" style="border-radius: 15px;">
@@ -28,7 +26,11 @@ include(APPPATH .'views/layout/header.php');
         </table>
     </div>    
     </form>
-    <script>
+</div>
+</div>
+</div>
+</div>
+<script>
         function toggleCheckboxes(source) {
             checkboxes = document.getElementsByName('traffict_ids[]');
             for (var i = 0; i < checkboxes.length; i++) {

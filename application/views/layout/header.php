@@ -20,7 +20,7 @@
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <!-- Start GA -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-  <script>
+ <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -28,6 +28,9 @@
     gtag('config', 'UA-94034622-3');
   </script>
   <style>
+      .navbar{
+      /* width: 80%; */
+    }
     @media (max-width:768px) {
     .navbar{
       width: 85%;
@@ -45,7 +48,7 @@ $username = $CI->session->userdata('username');
   <div id="app">
     <div class="main-wrapper main-wrapper-1">
       <!-- <div class="navbar-bg"></div> -->
-      <nav class="navbar navbar-expand-lg main-navbar bg-primary mt-2" style="border-radius: 30px; margin:auto;">
+      <nav class="navbar navbar-expand-lg main-navbar bg-primary mt-2" style="border-radius: 15vw; margin:auto;">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
             <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>

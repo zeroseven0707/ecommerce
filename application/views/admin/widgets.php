@@ -1,14 +1,12 @@
 <?php
 include(APPPATH .'views/layout/header.php');
 ?>
-   <div class="section-header">
-            <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-              <div class="breadcrumb-item"><a href="#">widgets</a></div>
-            </div>
-    </div>
-<div class="container">
-    <table class="table table-striped table-responsive-xl">
+    <div class="section-body mt-4">
+    <div class="col-12">
+    <div class="card">
+    <div class="card-body">
+    <div class="table-responsive">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Judul</th>
@@ -26,6 +24,10 @@ include(APPPATH .'views/layout/header.php');
             <?php endforeach; ?>
         </tbody>
     </table>
+</div>
+</div>
+</div>
+</div>
 </div>
 <?php
 include(APPPATH .'views/layout/footer.php');

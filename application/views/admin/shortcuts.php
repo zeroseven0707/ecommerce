@@ -1,15 +1,13 @@
 <?php
 include(APPPATH .'views/layout/header.php');
 ?>
-<div class="section-header">
-<a href="<?php echo site_url('admin/shortcuts/create'); ?>" class="btn btn-primary" style="border-radius: 2.3vw;">Tambah Shortcut</a>
-    <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?php echo base_url('dashboard')?>">Dashboard</a></div>
-        <div class="breadcrumb-item"><a href="#">Shortcuts</a></div>
-    </div>
-</div>
-<div class="container">
-    <table class="table table-striped table-responsive-xl">
+ <div class="section-body mt-4">
+    <div class="col-12">
+    <div class="card">
+    <div class="card-body">
+        <a href="<?php echo site_url('admin/shortcuts/create'); ?>" class="btn btn-primary" style="border-radius: 2.3vw;">Tambah Shortcut</a>
+    <div class="table-responsive">
+    <table class="table table-striped mt-4">
         <thead>
             <tr>
                 <th>Judul</th>
@@ -30,6 +28,10 @@ include(APPPATH .'views/layout/header.php');
             <?php endforeach; ?>
         </tbody>
     </table>
+</div>
+</div>
+</div>
+</div>
 </div>
 <?php
 include(APPPATH .'views/layout/footer.php');

@@ -1,14 +1,7 @@
 <?php
 include(APPPATH .'views/layout/header.php');
 ?>
-  <div class="section-header">
-            <h1>Edit Widget</h1>
-            <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active"><a href="<?php echo base_url('products')?>">Licenses</a></div>
-              <div class="breadcrumb-item"><a href="#">Edit Widget</a></div>
-            </div>
-    </div>
-<div class="container">
+<div class="container mt-4">
     <h2>Edit Widget <?=$widget->for?></h2>
     <?php echo validation_errors(); ?>
     <?php echo form_open('admin/widgets/edit/' . $widget->id); ?>

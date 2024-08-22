@@ -170,13 +170,13 @@
     cursor: pointer;
     
 }
-        .layout_content_dekstop{
+.layout_content_dekstop{
             background-color: <?= get_setting('body_color') ?>;
-            margin: 1vw;
+            margin: 0.3vw;
             margin-top: .10vw;
             border-radius: .7vw;
             overflow-y: scroll;
-            height: <?php echo (get_setting('footer') == true) ? '64vh' : '87vh'; ?>;
+            height: <?php echo (get_setting('footer') == true) ? '75vh' : '87vh'; ?>;
         }
     /* Mobile */
     @media (max-width:768px) {

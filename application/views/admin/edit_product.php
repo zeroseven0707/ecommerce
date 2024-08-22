@@ -1,14 +1,7 @@
 <?php
 include(APPPATH .'views/layout/header.php');
 ?>
-<div class="section-header">
-    <h1>Edit Product</h1>
-    <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active"><a href="<?php echo base_url('products')?>">Products</a></div>
-        <div class="breadcrumb-item"><a href="#">Edit Product</a></div>
-    </div>
-</div>
-<div class="container">
+<div class="container mt-4">
     <?php echo validation_errors(); ?>
     <?php echo form_open_multipart('admin/products/edit/'.$product['id']); ?>
         <div class="form-group">

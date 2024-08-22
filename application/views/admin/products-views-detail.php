@@ -1,13 +1,7 @@
 <?php
 include(APPPATH .'views/layout/header.php');
 ?>
-   <div class="section-header">
-            <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-              <div class="breadcrumb-item"><a href="#">Product</a></div>
-            </div>
-    </div>
-    <div class="section-body">
+    <div class="section-body mt-4">
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">

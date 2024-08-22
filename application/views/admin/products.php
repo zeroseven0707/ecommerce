@@ -6,14 +6,7 @@ include(APPPATH .'views/layout/header.php');
         <?= $this->session->flashdata('error'); ?>
     </div>
 <?php endif; ?>
-
-            <div class="section-header">
-                      <div class="section-header-breadcrumb">
-                        <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                        <div class="breadcrumb-item"><a href="#">Prroduct</a></div>
-                      </div>
-              </div>
-              <div class="section-body">
+              <div class="section-body mt-4">
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 21 Agu 2024 pada 15.15
+-- Waktu pembuatan: 21 Agu 2024 pada 17.48
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.1.12
 
@@ -222,7 +222,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `title`, `site_name`, `meta_description`, `logo`, `favicon`, `image_body`, `image_footer`, `text_body`, `theme`, `mata_uang`, `number_format`, `copyright`, `footer`) VALUES
-(2, 'Digitale', 'Digitalee', 'masyaallah\r\n', '1723846727_logo-menara-ilmu-otomasi-ugm.png', '1723938221_bg_1.png', '1723838948_gatot.png', '1724234059_gatot.png', 'Kumpulan Produk Digital Terbaik Sepanjang Masa', 3, 'Rp', '.', 'Copyright ©️ Produk Digital 2024', 1);
+(2, 'Digitale', 'Digitalee', 'masyaallah\r\n', '1723846727_logo-menara-ilmu-otomasi-ugm.png', '1723938221_bg_1.png', '1723838948_gatot.png', '1724234059_gatot.png', 'Kumpulan Produk Digital Terbaik Sepanjang Masa', 2, 'Rp', '.', 'Copyright ©️ Produk Digital 2024', 1);
 
 -- --------------------------------------------------------
 
