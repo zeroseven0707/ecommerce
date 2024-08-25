@@ -143,6 +143,19 @@ $username = $CI->session->userdata('username');
               </a>
             </li>
             <li>
+            <li>
+              <a class="nav-link" href="<?php echo site_url('admin/sosmed'); ?>">
+              <iconify-icon icon="tabler:brand-facebook" width="23" height="23"></iconify-icon>
+                <span>&nbsp; Sosial Media</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="<?php echo site_url('admin/api/product'); ?>">
+              <iconify-icon icon="material-symbols:api" width="23" height="23"></iconify-icon>
+                <span>&nbsp; API Product</span>
+              </a>
+            </li>
+            <li>
               <a class="nav-link" href="<?php echo site_url('admin/settings'); ?>">
               <iconify-icon icon="tabler:settings-bolt" width="23" height="23"></iconify-icon>
                 <span>&nbsp; Setting</span>

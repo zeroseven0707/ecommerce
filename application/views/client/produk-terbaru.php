@@ -26,14 +26,14 @@ include(APPPATH .'views/layout/header-client.php');
 
 
                                                 ?>
-                                                <span><?php if($product->price == 0){ echo "Freebies"; }else if($product->discount == true){ echo "<small><strike style='color:red;'>".get_setting('mata_uang'). number_format($product->price, 0, '', get_setting('number_format'))."</strike></small><br><p>".get_setting('mata_uang').number_format($price_after_discount, 0, '', get_setting('number_format'))."</p>" ; }else{ echo get_setting('mata_uang')." ". number_format($product->price, 0, '', get_setting('number_format')); } ?></span>
+                                                <span><?php if($product->price == 0){ echo "Gratis"; }else if($product->discount == true){ echo "<small><strike style='color:red;'>".get_setting('mata_uang'). number_format($product->price, 0, '', get_setting('number_format'))."</strike></small><br><p>".get_setting('mata_uang').number_format($price_after_discount, 0, '', get_setting('number_format'))."</p>" ; }else{ echo get_setting('mata_uang')." ". number_format($product->price, 0, '', get_setting('number_format')); } ?></span>
                                             </div>
                                     </div>
+                                    <div class="content_grid">
+                                        <h4><?php echo $product->name; ?></h4>
+                                        <a href="buy-now/<?php echo $product->id; ?>"><button>Beli</button></a>
+                                    </div>
                                 </a>
-                                <div class="content_grid">
-                                    <h4><?php echo $product->name; ?></h4>
-                                    <a href="buy-now/<?php echo $product->id; ?>"><button>Beli</button></a>
-                                </div>
                             </div>
                         <?php endforeach; ?>
                         </div>

@@ -19,7 +19,6 @@ include(APPPATH .'views/layout/header.php');
                     <td><?= $theme['theme_name']; ?></td>
                     <td>
                         <a href="<?= site_url('admin/edit_theme/'.$theme['id']); ?>"><button class="btn btn-warning">Edit</button></a>
-                        <a href="<?= site_url('admin/preview/'.$theme['id']); ?>"><button class="btn btn-primary">Preview</button></a>
                         <a href="<?= site_url('admin/delete_theme/'.$theme['id']); ?>" onclick="return confirm('Are you sure?')"><button class="btn btn-danger">Hapus</button></a>
                     </td>
                 </tr>

@@ -48,6 +48,10 @@ include(APPPATH .'views/layout/header.php');
             <label for="footer">Footer:</label>
             <input type="checkbox" id="footer" name="footer" <?php if($settings->footer == true){echo "checked";} ?>>
         </div>
+        <div class="form-group col-md-12 col-12">
+            <label for="freebies">Freebies:</label>
+            <input type="checkbox" id="freebies" name="freebies" <?php if($settings->freebies == true){echo "checked";} ?>>
+        </div>
             <div class="form-group col-md-3 col-6 w-25 p-3">
                 <label for="logo">Logo:</label>
                 <input type="file" class="form-control" id="logo" name="logo">

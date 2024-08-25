@@ -1,7 +1,9 @@
 </div>
 </div>
 </div>
+</div>
 <?php if(get_setting('footer') == true){ ?>
+<div class="container-footer">
 <div class="footer-two">
     <div class="logo-footer">
         <div>
@@ -12,7 +14,34 @@
         </div>
     </div>
     <div>
-        <p>Mari berlangganan informasi situs ini </p>
+        <p style="padding-left: 1.5vw;">Informasi</p>
+        <ul style="padding-left: 1.5vw;">
+            <?php
+        $CI =& get_instance();
+        $shortcut_items = $CI->Shortcut_model->get_shortcuts();
+        ?>
+        <?php foreach ($shortcut_items as $item): ?>
+            <li class="dot-li"><a href="<?= $item->link ?>"><?= $item->title ?></a></li>
+        <?php endforeach; ?>
+        </ul>
+    </div>
+    <div>
+        <p>Social Media</p>
+        <ul>
+            <?php
+        $CI =& get_instance();
+        $sosmeds = $CI->Sosmed_model->get_sosmed();
+        ?>
+        <?php foreach ($sosmeds as $sosmed): ?>
+            <?php if($sosmed->link == ""){}else{ ?>
+            <li><a href="<?= $sosmed->link ?>" class="dot-sosmed"></iconify-icon><?= $sosmed->icon ?>&nbsp; <?= $sosmed->name ?></a></li>
+        <?php
+        } 
+        endforeach; ?>
+        </ul>
+    </div>
+    <div>
+        <p class="subscribe">Mari berlangganan informasi situs ini </p>
         <form action="<?php echo site_url('trafficts'); ?>" method="post">
             <div>
                 <input type="text" placeholder="Nama" name="name">
@@ -23,16 +52,6 @@
             <button type="submit">Berlangganan</button>
         </form>
     </div>
-    <div>
-        <ul>
-            <?php
-        $CI =& get_instance();
-        $shortcut_items = $CI->Shortcut_model->get_shortcuts();
-        ?>
-        <?php foreach ($shortcut_items as $item): ?>
-            <li><a href="<?= $item->link ?>"><?= $item->title ?></a></li>
-        <?php endforeach; ?>
-        </ul>
     </div>
 </div>
 <?php } ?>

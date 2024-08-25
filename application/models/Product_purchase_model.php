@@ -64,6 +64,21 @@ class Product_purchase_model extends CI_Model {
             return $query->row();
         }
     }
+    public function get_product_purchase_api($id = null,$limit = 10) {
+        if ($id === null) {
+            $this->db->select('product_purchases.*, products.*');
+            $this->db->from('product_purchases');
+            $this->db->join('products', 'products.id = product_purchases.product_id'); // Sesuaikan 'product_id' dengan nama kolom kunci asing yang menghubungkan tabel
+            $this->db->order_by('product_purchases.purchases', 'DESC');
+            $this->db->limit($limit);
+        
+            $query = $this->db->get();
+            return $query->result();
+        } else {
+            $query = $this->db->get_where('product_purchases', ['id' => $id]);
+            return $query->row();
+        }
+    }
     public function buy_now($id, $data) {
         $query = $this->db->get_where('product_purchases', ['product_id' => (int)$id]);
         $query2 = $this->db->get_where('products', ['id' => (int)$id]);

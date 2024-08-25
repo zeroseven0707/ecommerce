@@ -6,6 +6,7 @@ include(APPPATH .'views/layout/header.php');
     <div class="card">
     <div class="card-body">
     <a href="<?php echo site_url('admin/menu/create'); ?>" class="btn btn-primary" style="border-radius: 2.3vw;">Tambah Menu</a>
+    <a class="btn btn-danger float-right" href="https://icon-sets.iconify.design/?category=General" style="border-radius: 10vw;" target="_blank">Cari Icon disni</a>
     <div class="table-responsive">
         <table class="table table-striped mt-4">
             <thead>
@@ -19,7 +20,7 @@ include(APPPATH .'views/layout/header.php');
             <tbody>
                 <?php foreach ($menu as $menu): ?>
                     <tr>
-                        <td><img src="<?php echo base_url('uploads/icons/'.$menu->icon);?>" width="40" alt="icon"></td>
+                        <td><?php echo $menu->icon;?></td>
                         <td><?php echo $menu->title; ?></td>
                         <td><?php echo $menu->link; ?></td>
                         <td>

@@ -23,6 +23,8 @@ class Admin extends MY_Controller {
         $this->load->model('Guide_model');
         $this->load->model('Theme_model');
         $this->load->model('Traffict_model');
+        $this->load->model('Sosmed_model');
+        $this->load->model('Rest_model');
         $this->load->helper('download');
         $this->load->database();
     }
@@ -287,6 +289,49 @@ public function remove_image($id)
         redirect('admin/licenses');
     }
 
+    // Management Sosmed
+    public function sosmed()
+    {
+        $data['sosmed'] = $this->Sosmed_model->get_sosmed();
+        $this->load->view('admin/sosmed', $data);
+        
+    }
+
+    public function create_sosmed()
+    {
+        $this->form_validation->set_rules('name', 'Nama', 'required');
+        
+        if ($this->form_validation->run() === FALSE) {
+            
+            $this->load->view('admin/create_sosmed');
+            
+        } else {
+            $this->Sosmed_model->insert_sosmed($this->input->post());
+            redirect('admin/sosmed');
+        }
+    }
+    public function edit_sosmed($id)
+    {
+        $data['sosmed'] = $this->Sosmed_model->get_sosmed($id);
+
+        $this->form_validation->set_rules('name', 'Nama', 'required');
+        
+        if ($this->form_validation->run() === FALSE) {
+            
+            $this->load->view('admin/edit_sosmed', $data);
+            
+        } else {
+            $this->Sosmed_model->update_sosmed($id, $this->input->post());
+            redirect('admin/sosmed');
+        }
+    }
+
+    public function delete_sosmed($id)
+    {
+        $this->Sosmed_model->delete_sosmed($id);
+        redirect('admin/sosmed');
+    }
+
     // Management Guides
         public function guides()
         {
@@ -363,97 +408,44 @@ public function remove_image($id)
           
       }
   
-      public function create_menu()
-      {
-          $this->form_validation->set_rules('title', 'Judul', 'required');
-          $this->form_validation->set_rules('link', 'Link', 'required');
-          
-          if ($this->form_validation->run() === FALSE) {
-              $this->load->view('admin/create_menu');
-          } else {
-              $config['upload_path'] = './uploads/icons/';
-              $config['allowed_types'] = 'jpg|jpeg|png|gif';
-              $config['max_size'] = 2048; // 2MB
-          
-              $this->load->library('upload', $config);
-              $this->upload->initialize($config);
-    
-              if ($this->upload->do_upload('icon')) {
-                  $icon_data = $this->upload->data();
-                  $uploaded_images[] = base_url($uploadPath.$fileData['file_name']);
-              }
       
-              if ($this->upload->do_upload('icon')) {
-                  $icon_data = $this->upload->data();
-                  $menu_data = $this->input->post();
-                  $menu_data['icon'] = $icon_data['file_name'];
-                  $this->Menu_model->insert_menu($menu_data);
-              } else {
-                  // Handle upload error
-                  $data['upload_error'] = $this->upload->display_errors();
-                  $this->load->view('admin/create_menu', $data);
-                  return;
-              }
-      
-              redirect('admin/menu');
-          }
-      }      
-  
-      public function edit_menu($id)
-      {
-          $data['menu'] = $this->Menu_model->get_menus($id);
-      
-          $this->form_validation->set_rules('title', 'Judul', 'required');
-          $this->form_validation->set_rules('link', 'Link', 'required');
-          
-          if ($this->form_validation->run() === FALSE) {
-              $this->load->view('admin/edit_menu', $data);
-          } else {
-              $config['upload_path'] = './uploads/icons/';
-              $config['allowed_types'] = 'jpg|jpeg|png|gif';
-              $config['max_size'] = 2048; // 2MB
-          
-              $this->load->library('upload', $config);
-      
-              $menu_data = $this->input->post();
-      
-              if ($this->upload->do_upload('icon')) {
-                  // Delete old icon if exists
-                  if (file_exists('./uploads/icons/' . $data['menu']->icon)) {
-                      unlink('./uploads/icons/' . $data['menu']->icon);
-                  }
-      
-                  $icon_data = $this->upload->data();
-                  $menu_data['icon'] = $icon_data['file_name'];
-              }
-      
-              $this->Menu_model->update_menu($id, $menu_data);
-              redirect('admin/menu');
-          }
-      }      
-  
-      public function delete_menu($id)
-      {
-          // Dapatkan data menu berdasarkan ID
-          $menu = $this->Menu_model->get_menus($id);
-          
-          // Jika menu ditemukan
-          if ($menu) {
-              // Hapus file icon dari server jika ada
-              if ($menu->icon && file_exists('./uploads/icons/' . $menu->icon)) {
-                  unlink('./uploads/icons/' . $menu->icon);
-              }
-              
-              // Hapus data menu dari database
-              $this->Menu_model->delete_menu($id);
-              
-              // Redirect ke halaman daftar menu
-              redirect('admin/menu');
-          } else {
-              // Jika menu tidak ditemukan, tampilkan pesan error atau redirect
-              show_404();
-          }
-      }
+    public function create_menu()
+    {
+        $this->form_validation->set_rules('title', 'Judul', 'required');
+        $this->form_validation->set_rules('link', 'Link', 'required');
+        
+        if ($this->form_validation->run() === FALSE) {
+            
+            $this->load->view('admin/create_menu');
+            
+        } else {
+            $this->Menu_model->insert_menu($this->input->post());
+            redirect('admin/menu');
+        }
+    }
+
+    public function edit_menu($id)
+    {
+        $data['menu'] = $this->Menu_model->get_menus($id);
+
+        $this->form_validation->set_rules('title', 'Judul', 'required');
+        $this->form_validation->set_rules('link', 'Link', 'required');
+        
+        if ($this->form_validation->run() === FALSE) {
+            
+            $this->load->view('admin/edit_menu', $data);
+            
+        } else {
+            $this->Menu_model->update_menu($id, $this->input->post());
+            redirect('admin/menu');
+        }
+    }
+
+    public function delete_menu($id)
+    {
+        $this->Menu_model->delete_menu($id);
+        redirect('admin/menu');
+    }
       
     // Shortcut Management
     public function shortcuts()
@@ -526,6 +518,11 @@ public function remove_image($id)
                 }else{
                     $footer = false;
                 }
+                if($this->input->post('freebies') == true){
+                    $freebies = true;
+                }else{
+                    $freebies = false;
+                }
                 $data = array(
                     'theme' => $this->input->post('theme'),
                     'title' => $this->input->post('title'),
@@ -535,7 +532,8 @@ public function remove_image($id)
                     'mata_uang' => $this->input->post('mata_uang'),
                     'number_format' => $this->input->post('number_format'),
                     'copyright' => $this->input->post('copyright'),
-                    'footer' =>$footer 
+                    'footer' =>$footer,
+                    'freebies' =>$freebies
                 );
                 // Proses upload logo
                 if (!empty($_FILES['logo']['name'])) {
@@ -726,9 +724,34 @@ public function remove_image($id)
     
             // Simpan data ke database (update jika sudah ada, insert jika belum ada)
             $this->Contact_model->save_contact($data);
-    
+            $this->session->set_flashdata('success', 'Contact berhasil diupdate');
             // Redirect ke halaman form setelah penyimpanan
             redirect('admin/contact');
+        }
+        public function get_api_product() {
+            // Ambil data kontak jika ada
+            $rest = $this->Rest_model->get_rest();
+            $data['rest'] = $rest;
+            $this->load->view('admin/rest_api_preview', $data);
+        }
+        public function api_product() {
+            // Ambil data kontak jika ada
+            $rest = $this->Rest_model->get_rest();
+            $data['rest'] = $rest;
+            $this->load->view('admin/rest_api', $data);
+        }
+        public function save_api_product() {
+            // Ambil data dari form
+            $data = [
+                'value' => $this->input->post('value'),
+                // Tambahkan field lainnya di sini jika diperlukan
+            ];
+    
+            // Simpan data ke database (update jika sudah ada, insert jika belum ada)
+            $this->Rest_model->save_rest($data);
+            $this->session->set_flashdata('success', 'Data berhasil diupdate');
+            // Redirect ke halaman form setelah penyimpanan
+            redirect('admin/api/product');
         }
         public function product_purchases()
         {
@@ -827,6 +850,7 @@ public function remove_image($id)
             } else {
                 $data = $this->input->post();
                 $this->Theme_model->update_theme($id, $data);
+                $this->session->set_flashdata('success', 'Theme berhasil diupdate');
                 redirect($this->input->server('HTTP_REFERER'));
             }
         }
@@ -841,32 +865,40 @@ public function remove_image($id)
             $this->load->view('admin/trafficts', $data);
         }
     
-        public function trafficts_export_csv() {
+        public function action() {
             $traffict_ids = $this->input->post('traffict_ids');
-    
+        
+            if ($this->input->post('export')) {
+                $this->trafficts_export_csv($traffict_ids);
+            } elseif ($this->input->post('delete')) {
+                $this->delete_trafficts($traffict_ids);
+            }
+        }
+        
+        private function trafficts_export_csv($traffict_ids) {
             if (!empty($traffict_ids)) {
                 // Ambil data berdasarkan ID yang dipilih
                 $this->db->where_in('id', $traffict_ids);
                 $this->db->select('name, email');
                 $query = $this->db->get('trafficts');
                 $trafficts = $query->result_array();
-    
+        
                 // Nama file CSV
                 $filename = 'trafficts_export_' . date('Ymd') . '.csv';
                 header('Content-Type: text/csv');
                 header('Content-Disposition: attachment;filename="' . $filename . '"');
-    
+        
                 // Buka file CSV untuk output
                 $f = fopen('php://output', 'w');
-    
+        
                 // Tambahkan header kolom ke CSV
                 fputcsv($f, array('Name', 'Email'));
-    
+        
                 // Tambahkan data ke CSV
                 foreach ($trafficts as $row) {
                     fputcsv($f, $row);
                 }
-    
+        
                 // Tutup file CSV
                 fclose($f);
                 exit;
@@ -875,5 +907,21 @@ public function remove_image($id)
                 redirect('admin/trafficts');
             }
         }
+        
+        private function delete_trafficts($traffict_ids) {
+            if (!empty($traffict_ids)) {
+                // Hapus data berdasarkan ID yang dipilih
+                $this->db->where_in('id', $traffict_ids);
+                $this->db->delete('trafficts');
+        
+                // Redirect ke halaman trafficts dengan pesan sukses
+                $this->session->set_flashdata('success', 'Selected trafficts have been deleted.');
+                redirect('admin/trafficts');
+            } else {
+                // Jika tidak ada yang dipilih, kembali ke halaman sebelumnya
+                redirect('admin/trafficts');
+            }
+        }
+        
         
 }

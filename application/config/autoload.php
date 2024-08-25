@@ -135,4 +135,4 @@ $autoload['language'] = array();
 $autoload['model'] = array();
 
 
-$autoload['model'] = array('Shortcut_model','Widget_model','Menu_model');
+$autoload['model'] = array('Shortcut_model','Sosmed_model','Widget_model','Menu_model');

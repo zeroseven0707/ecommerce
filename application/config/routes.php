@@ -84,6 +84,12 @@ $route['admin/licenses/create'] = 'admin/create_license';
 $route['admin/licenses/edit/(:num)'] = 'admin/edit_license/$1';
 $route['admin/licenses/delete/(:num)'] = 'admin/delete_license/$1';
 
+$route['admin/sosmed'] = 'admin/sosmed';
+$route['admin/sosmed/create'] = 'admin/create_sosmed';
+$route['admin/sosmed/edit/(:num)'] = 'admin/edit_sosmed/$1';
+$route['admin/sosmed/delete/(:num)'] = 'admin/delete_sosmed/$1';
+
+
 $route['admin/guides'] = 'admin/guides';
 $route['admin/guides/create'] = 'admin/create_guide';
 $route['admin/guides/edit/(:num)'] = 'admin/edit_guide/$1';
@@ -116,10 +122,16 @@ $route['admin/settings/update'] = 'admin/update_setting';
 $route['admin/contact'] = 'admin/contact';
 $route['admin/contact/save'] = 'admin/save_contact';
 
+$route['admin/api/product'] = 'admin/api_product';
+$route['admin/api/save-product'] = 'admin/save_api_product';
+$route['admin/api/preview'] = 'admin/get_api_product';
+
 $route['admin/trafficts'] = 'admin/trafficts';
 // Import/Export Product
 $route['import-products'] = 'admin/import_products';
 $route['import-products-csv'] = 'admin/import_csv';
-$route['trafficts/export_csv'] = 'admin/trafficts_export_csv';
+$route['trafficts/action'] = 'admin/action';
 $route['export-products-csv'] = 'admin/export_csv';
 
+$route['api/products']['GET'] = 'api/index'; // Mengambil semua produk
+$route['api/products/(:num)']['GET'] = 'api/view/$1'; // Mengambil produk berdasarkan ID

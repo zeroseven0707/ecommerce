@@ -56,8 +56,12 @@ include(APPPATH .'views/layout/header.php');
 <?php
 include(APPPATH .'views/layout/footer.php');
 ?>
-<script src="https://cdn.ckeditor.com/4.25.0-lts/standard/ckeditor.js"></script>
-<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('description');
+    // Replace the textarea with CKEditor
+    ClassicEditor
+        .create(document.querySelector('#description'))
+        .catch(error => {
+            console.error(error);
+        });
 </script>

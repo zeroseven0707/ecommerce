@@ -2,16 +2,17 @@
 include(APPPATH .'views/layout/header.php');
 ?>
 <div class="container mt-4">
+    <a class="btn btn-danger mt-4" href="https://icon-sets.iconify.design/?category=General" style="border-radius: 10vw;" target="_blank">Cari Icon disni</a>
+</div>
+<div class="container mt-4">
     <?php echo validation_errors(); ?>
     <?php if (isset($upload_error)) echo '<div class="alert alert-danger">' . $upload_error . '</div>'; ?>
     <?php echo form_open_multipart('admin/menu/edit/' . $menu->id); ?>
-    <div class="form-group">
-        <label for="icon">Icon:</label>
-        <input type="file" class="form-control" id="icon" name="icon">
-        <?php if($menu->icon): ?>
-            <img src="<?= base_url('uploads/icons/'.$menu->icon); ?>" alt="Current Icon" class="img-thumbnail mt-2" style="max-width: 100px;">
-        <?php endif; ?>
-    </div>
+        <div class="form-group">
+            <label for="icon">Icon:</label>
+            <textarea name="icon" id="icon" class="form-control"> <?php if($menu->icon): echo $menu->icon; endif; ?></textarea>
+            <?php if($menu->icon): echo $menu->icon; endif; ?>
+        </div>
         <div class="form-group">
             <label for="title">Judul:</label>
             <input type="text" class="form-control" id="title" name="title" value="<?php echo $menu->title; ?>">

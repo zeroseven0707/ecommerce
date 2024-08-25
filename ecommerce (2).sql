@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 21 Agu 2024 pada 17.48
+-- Waktu pembuatan: 23 Agu 2024 pada 14.07
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.1.12
 
@@ -98,10 +98,7 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `icon`, `title`, `link`) VALUES
-(7, 'images1.png', 'Menu Custom', 'https://www.instagram.com/mndaa.ayy_/'),
-(8, 'images3.png', 'Menu Custom', 'https://www.instagram.com/mndaa.ayy_/'),
-(9, 'images5.png', 'Menu Custom', 'https://www.instagram.com/mndaa.ayy_/'),
-(10, 'images7.png', 'Menu Custom', 'https://www.instagram.com/mndaa.ayy_/');
+(15, '  <iconify-icon icon=\"material-symbols:add-a-photo-outline-sharp\" width=\"25\" height=\"25\"></iconify-icon>', 'Galery', 'https://www.instagram.com/mndaa.ayy_/');
 
 -- --------------------------------------------------------
 
@@ -163,8 +160,8 @@ CREATE TABLE `product_purchases` (
 --
 
 INSERT INTO `product_purchases` (`id`, `product_id`, `purchases`) VALUES
-(59, 62, 0),
-(60, 63, 0),
+(59, 62, 1),
+(60, 63, 1),
 (61, 64, 0),
 (62, 65, 0),
 (64, 67, 0),
@@ -187,12 +184,12 @@ CREATE TABLE `product_views` (
 --
 
 INSERT INTO `product_views` (`id`, `product_id`, `views`) VALUES
-(59, 62, 15),
-(60, 63, 48),
-(61, 64, 43),
+(59, 62, 27),
+(60, 63, 55),
+(61, 64, 46),
 (62, 65, 0),
-(64, 67, 4),
-(65, 68, 1);
+(64, 67, 22),
+(65, 68, 2);
 
 -- --------------------------------------------------------
 
@@ -214,15 +211,16 @@ CREATE TABLE `settings` (
   `mata_uang` varchar(20) NOT NULL,
   `number_format` enum('.',',') NOT NULL DEFAULT '.',
   `copyright` text DEFAULT NULL,
-  `footer` tinyint(4) NOT NULL DEFAULT 0
+  `footer` tinyint(4) NOT NULL DEFAULT 0,
+  `freebies` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `settings`
 --
 
-INSERT INTO `settings` (`id`, `title`, `site_name`, `meta_description`, `logo`, `favicon`, `image_body`, `image_footer`, `text_body`, `theme`, `mata_uang`, `number_format`, `copyright`, `footer`) VALUES
-(2, 'Digitale', 'Digitalee', 'masyaallah\r\n', '1723846727_logo-menara-ilmu-otomasi-ugm.png', '1723938221_bg_1.png', '1723838948_gatot.png', '1724234059_gatot.png', 'Kumpulan Produk Digital Terbaik Sepanjang Masa', 2, 'Rp', '.', 'Copyright ©️ Produk Digital 2024', 1);
+INSERT INTO `settings` (`id`, `title`, `site_name`, `meta_description`, `logo`, `favicon`, `image_body`, `image_footer`, `text_body`, `theme`, `mata_uang`, `number_format`, `copyright`, `footer`, `freebies`) VALUES
+(2, 'Digitale', 'Digitalee', 'masyaallah\r\n', '1723846727_logo-menara-ilmu-otomasi-ugm.png', '1723938221_bg_1.png', '1723838948_gatot.png', '1724234059_gatot.png', 'Kumpulan Produk Digital Terbaik Sepanjang Masa', 2, 'Rp', '.', 'Copyright ©️ Produk Digital 2024', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -245,6 +243,29 @@ INSERT INTO `shortcuts` (`id`, `title`, `link`) VALUES
 (5, 'Privacy policy', 'https://www.instagram.com/sihab.07/'),
 (6, 'About', 'https://www.instagram.com/mndaa.ayy_/'),
 (7, 'Q&A', 'https://www.instagram.com/mndaa.ayy_/');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `social_media`
+--
+
+CREATE TABLE `social_media` (
+  `id` int(11) NOT NULL,
+  `icon` longtext DEFAULT NULL,
+  `name` text NOT NULL,
+  `link` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `social_media`
+--
+
+INSERT INTO `social_media` (`id`, `icon`, `name`, `link`) VALUES
+(2, '  <iconify-icon icon=\"mingcute:whatsapp-fill\" width=\"15\" height=\"15\"></iconify-icon>', 'Whatsapp', 'https://www.instagram.com/mndaa.ayy_/'),
+(3, NULL, 'Instagram', ''),
+(4, NULL, 'Tiktok', ''),
+(5, NULL, 'Twitter', '');
 
 -- --------------------------------------------------------
 
@@ -279,7 +300,7 @@ CREATE TABLE `theme` (
 --
 
 INSERT INTO `theme` (`id`, `theme_name`, `header_color`, `navbar_color`, `menu_mobile_color`, `text_menu_mobile_color`, `box_license`, `button_banner_color`, `button_banner_text_color`, `text_color`, `header_menu_text_color`, `product_box_text_color`, `banner_text_color`, `body_color`, `product_box_color`, `buy_button_color`, `buy_button_text_color`, `desktop_sidebar_menu_color`, `desktop_sidebar_text_menu_color`) VALUES
-(2, 'Default', '#0866ff', '#65bde0', '#000000', '#ffffff', '#f0f0f0', '#0866e1', '#ffffff', '#000000', '#ffffff', '#ffffff', '#000000', '#ffffff', '#0866ff', '#00a400', '#ffffff', '#0866e1', '#ffffff'),
+(2, 'Default', '#0866ff', '#ffffff', '#000000', '#ffffff', '#f0f0f0', '#0866e1', '#ffffff', '#000000', '#000000', '#ffffff', '#000000', '#ffffff', '#0866ff', '#00a400', '#ffffff', '#0866e1', '#ffffff'),
 (3, 'tema 2', '#ff0000', '#efbdbd', '#ff0000', '#ffffff', '#dfafaf', '#ff0000', '#ffffff', '#000000', '#ffffff', '#ffffff', '#ff0000', '#ffffff', '#ff0000', '#1eff00', '#ff0000', '#ff0000', '#ffffff'),
 (4, 'tema 3', '#000000', '#9d9b9b', '#ff0000', '#000000', '#313030', '#000000', '#000000', '#ffffff', '#ffffff', '#ffffff', '#000000', '#d3c0c0', '#68698d', '#006cfa', '#ff0000', '#000000', '#000000');
 
@@ -301,9 +322,7 @@ CREATE TABLE `trafficts` (
 
 INSERT INTO `trafficts` (`id`, `name`, `email`) VALUES
 (1, 'Muhamad Sihabudin ', 'teddy@gmail.com'),
-(2, 'Muhamad Sihabudin ', 'msihabudin461@gmail.com'),
-(3, 'Sukma', 'daniel.1224pratama@gmail.com'),
-(4, 'smooth', 'admin@example.com');
+(2, 'Muhamad Sihabudin ', 'msihabudin461@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -345,7 +364,7 @@ CREATE TABLE `widgets` (
 INSERT INTO `widgets` (`id`, `for`, `value`) VALUES
 (1, 'dekstop', '<img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4wVBlYdhw2adVs7lj5teWsp7RUqVxxZbEgQ&s\" style=\"width:100%;\">'),
 (2, 'mobile', '<img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4wVBlYdhw2adVs7lj5teWsp7RUqVxxZbEgQ&s\" style=\"width:100%;\">\r\n<img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4wVBlYdhw2adVs7lj5teWsp7RUqVxxZbEgQ&s\" style=\"width:100%;\">'),
-(4, 'mobile 2', '<img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4wVBlYdhw2adVs7lj5teWsp7RUqVxxZbEgQ&s\" style=\"width:100%;\">');
+(4, 'mobile 2', '<img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4wVBlYdhw2adVs7lj5teWsp7RUqVxxZbEgQ&s\" style=\"width:100%;\">\r\n<img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4wVBlYdhw2adVs7lj5teWsp7RUqVxxZbEgQ&s\" style=\"width:100%;\">');
 
 --
 -- Indexes for dumped tables
@@ -402,6 +421,12 @@ ALTER TABLE `shortcuts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `social_media`
+--
+ALTER TABLE `social_media`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `theme`
 --
 ALTER TABLE `theme`
@@ -445,25 +470,25 @@ ALTER TABLE `licenses`
 -- AUTO_INCREMENT untuk tabel `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT untuk tabel `product_purchases`
 --
 ALTER TABLE `product_purchases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT untuk tabel `product_views`
 --
 ALTER TABLE `product_views`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT untuk tabel `settings`
@@ -476,6 +501,12 @@ ALTER TABLE `settings`
 --
 ALTER TABLE `shortcuts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `social_media`
+--
+ALTER TABLE `social_media`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `theme`

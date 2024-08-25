@@ -2,7 +2,7 @@
 </div>
 <footer class="main-footer">
         <div class="footer-left">
-          <?= get_setting('footer') ?>
+          <?= get_setting('copyright') ?>
         </div>
         <div class="footer-right">
           

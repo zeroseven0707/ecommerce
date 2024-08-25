@@ -7,6 +7,14 @@
             <?= validation_errors(); ?>
         </div>
     <?php endif; ?>
+    <?php if ($this->session->flashdata('success')): ?>
+    <div class="alert alert-success text-dark">
+        <?php echo $this->session->flashdata('success'); ?>
+    </div>
+<?php endif; ?>
+
+<!-- Form dan konten lain dari edit_theme.php -->
+
     
     <!-- Form untuk mengedit tema -->
     <?= form_open('admin/edit_theme/'.$theme['id'], ['class' => 'bg-light p-4 rounded shadow-sm']); ?>

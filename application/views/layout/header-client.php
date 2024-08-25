@@ -8,6 +8,7 @@
     <title><?php echo get_setting('title'); ?></title>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/css/style.css')?>">
+
     <style>
         *{
         padding: 0;
@@ -21,32 +22,63 @@
         }
         /* Header */
         .header{
-            display: grid;
-            grid-template-columns: 27% 46% 27%;
-            align-items: center;
-            padding: .2vw 2vw;
-            justify-items:end;
             background-color: <?= get_setting('header_color') ?>;
-            width: 100%;
+        }
+        .sub-header{
+            display: grid;
+            grid-template-columns: 45% 33% 22%;
+            align-items: center;
+            padding: 0vw 2vw;
+            justify-items:end;
+            width: 62%;
+            margin: 0 auto;
+        }
+        .sidebar .menu{
+        display: none;
         }
         .fixed_menu{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2.4vw;
-    padding-bottom: 0;
-}
+            margin-top: .3vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1vw;
+            background-color: <?= get_setting('navbar_color') ?>;
+            padding-bottom: 0;
+        }
+        .box_fixed_menu iconify-icon{
+            font-size: .9vw;
+        }
+        .box_fixed_menu .contact-icon{
+            font-size: 1.2vw;
+        }
+            .box_fixed_menu{
+            display: flex;
+            align-items: center;
+            gap: .3vw;
+        }
+
         .box_fixed_menu h3{
             color: <?= get_setting('header_menu_text_color') ?>;
-            font-weight: 400;
-            font-size: 2vw;
+            font-family: "Rubik", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 300;
+            font-style: normal;
+            font-size: 1vw;
         }
         /* Menu Sidebar Dekstop */
-        .space_side {
-            font-size: 1.4vw;
+        .space_side iconify-icon{
+            font-size:1.4vw;
+            color: <?= get_setting('desktop_sidebar_text_menu_color') ?> ;
+        }
+            .space_side {
+            font-size: 1vw;
             background-color: <?= get_setting('desktop_sidebar_menu_color') ?>;
             width: 100%;
-            height: 2.8vw;
+            height: 2vw;
+            font-family: "Rubik", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 420;
+            font-style: normal;
             margin-bottom: .5vw;
             color: <?= get_setting('desktop_sidebar_text_menu_color') ?>;
             display: flex;
@@ -57,10 +89,10 @@
 
         /* Button Banner */
         .banner button{
-            font-size: 1.4vw;
+            font-size: .8vw;
             border: none;
             outline: none;
-            padding: .7vw 1.6vw;
+            padding: .4vw 1.3vw;
             border-radius: 100vw;
             background-color: <?= get_setting('button_banner_color') ?>;
             color: <?= get_setting('button_banner_text_color') ?>;
@@ -68,7 +100,7 @@
             align-items: center;
             justify-content: center;
             margin: auto;
-            gap: .7vw;
+            gap: .5vw;
             cursor: pointer;
         }
         .banner button iconify-icon{
@@ -77,13 +109,13 @@
         }
         /* Box Produk */
         .box_grid{
-            padding: .4vw;
+            padding: .2vw;
             background-color: <?= get_setting('product_box_color') ?>;
             border-radius: 1vw;
         }
         .price_grid span{
             color: white;
-            font-size: 1.3vw;
+            font-size: .7vw;
             font-weight: bold;
         }
         .price_grid span p{
@@ -93,9 +125,11 @@
             margin-top:0;
             z-index: 1;
             color: <?= get_setting('banner_text_color') ?>;
+            font-size: 1.6vw;
             font-family: "Lexend Deca", sans-serif;
-            font-size: 3.2vw;
-            font-weight: 640;
+            font-size: 1.7vw;
+            font-weight: bold;
+            font-style: normal;
             margin-bottom: 2vw;
         }
         /* Lihat Selengkapnya */
@@ -104,8 +138,8 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            gap: 1vw;
-            font-size: 1.3vw;
+            gap: .6vw;
+            font-size: 1vw;
             font-weight: 400;
             color: #0866ff;
         }
@@ -115,33 +149,54 @@
             width: 45%;
             margin-top: 1.5vw;
             border-radius:3vw;
-            height: 3.3vw;
-            font-size: 1.6vw;
+            height: 2.2vw;
+            font-size: 1vw;
             color: white;
             border: none;
             background-color: <?= get_setting('buy_button_color') ?>;
         }
         .content_grid h4{
+            font-family: "Rubik", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
             background: none;
-                text-align: start;
-                color: <?= get_setting('product_box_text_color') ?>;
-                font-size: 1.3vw;
-                font-weight: 400;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
-                overflow: hidden;
-                text-overflow: ellipsis;
+            text-align: start;
+            color: <?= get_setting('product_box_text_color') ?>;
+            font-size: 1vw;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
             }
+    .cari{
+            font-size: .8vw;
+            background-color: <?= get_setting('buy_button_color') ?>;
+            border: none;
+            outline: none;
+            color: white;
+            margin-left: 16.3vw;
+            cursor: pointer;
+            padding: .3vw 1.4vw;
+            width: max-content;
+            border-radius: 100vw;
+            position: absolute;
+        }
+        .cari2{
+            /* background: none; */
+            /* border: none; */
+            display: none;
+        }
         /* buy button index */
         .content_grid button{
-            font-size: 1.3vw;
+            font-size: 1vw;
             background-color: <?= get_setting('buy_button_color') ?>;
             border: none;
             outline: none;
             color: white;
             cursor: pointer;
-            padding: .4vw 1.7vw;
+            padding: .2vw 1.7vw;
             width: max-content;
             border-radius: 100vw;
         }
@@ -157,11 +212,15 @@
     }
     .guide{
     display: block;
-    color: <?= get_setting('header_menu_text_color')?>;
+    color: white;
     width: max-content;
     background-color: transparent;
     outline: none;
-    font-size: 1.3vw;
+    font-size: .9vw;
+      font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     border: none;
     text-align: end;
     display: flex;
@@ -175,12 +234,50 @@
             margin: 0.3vw;
             margin-top: .10vw;
             border-radius: .7vw;
-            overflow-y: scroll;
-            height: <?php echo (get_setting('footer') == true) ? '75vh' : '87vh'; ?>;
+            overflow-y: <?php echo (get_setting('footer') == true) ? 'none' : 'scroll'; ?>;
+            /* overflow-y: scroll; */
+            height: <?php echo (get_setting('footer') == true) ? 'max-content' : 'scroll'; ?>;
         }
+.container-gap{
+    padding-top: 5vw;
+    width: 60%;
+    /* border: 1px solid black; */
+    margin: 0 auto;
+    height: max-content;
+}
+.container{
+    background-color: <?= get_setting('navbar_color') ?>;
+}
+.sidebar {
+    display: none;
+}
+.active h3{
+        color: <?= get_setting('header_color') ?>;
+    }
+.active iconify-icon{
+    color: <?= get_setting('header_color') ?>;
+}
+.container-header{
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+background-color: <?= get_setting('navbar_color') ?>;
+}
     /* Mobile */
     @media (max-width:768px) {
-        .header{
+        .box_grid{
+        padding: .8vw;
+        border-radius: 2.8vw;
+    }
+        .container-gap{
+            width: 100%;
+        }
+        .layout_content_dekstop{
+            height: 100%;
+            overflow-y: scroll;
+            margin: 0vw;
+        }
+        .sub-header{
         display: grid;
         grid-template-columns: 11% 78% 11%;
         align-items: center;
@@ -188,6 +285,14 @@
         justify-items:end;
         width: 100%;
     }
+    .cari{
+           display: none;
+        }
+        .cari2{
+            background: none;
+            display: block;
+            border: none;
+        }
         .sidebar {
             display: none;
             right: 0;
@@ -195,8 +300,7 @@
             background-color: #fff;
             width: 60%;
             position: absolute;
-            height: 100%;
-            border: 1px solid <?= get_setting('header_color') ?>;
+            height: 100vh;
             transition: transform 0.3s ease;
         }
             .content_grid h4{
@@ -209,15 +313,25 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .sidebar .menu{
+        .sidebar .menu iconify-icon{
+            color: <?= get_setting('desktop_sidebar_text_menu_color') ?>;
+        }
+            .sidebar .menu{
             width: 90%;
             height: 12vw;
             display: flex;
+            border-radius: 50vw;
+            margin: auto;
             align-items: center;
             border-radius: 5px;
-            margin: auto;
             color: <?= get_setting('desktop_sidebar_text_menu_color') ?>;
             background-color: <?= get_setting('header_color') ?>;
+        }
+        .sidebar .menu a{
+            margin: auto;
+            width: max-content;
+            display: flex;
+            align-items: center;
         }
         .banner button{
             font-size: 3.7vw;
@@ -265,9 +379,11 @@
         .banner h1{
         margin-top: -4.8vw;
         z-index: 1;
-        font-family: "Lexend Deca", sans-serif;
         font-size: 6vw;
         margin-bottom: 6vw;
+    }
+    .sidebar{
+        display: none;
     }
     .buynow{
         cursor: pointer;
@@ -300,15 +416,18 @@
     }
     .box_fixed_menu iconify-icon{
         font-size: 6vw;
-        display: block;
         color: white;
     }
+    .box_fixed_menu .contact-icon{
+            font-size: 6vw;
+        }
     .box_fixed_menu h3{
         color: <?= get_setting('text_menu_mobile_color') ?>;
         font-weight: 400;
         font-size: 3vw;
     }
     .active h3{
+        font-size: 2.4vw;
         color: <?= get_setting('menu_mobile_color') ?>;
     }
     .active iconify-icon{
@@ -363,50 +482,54 @@
         display: none;
     }
     }
-
   
     </style>
     <body>
     <div class="container">
-        <div class="header">
-            <div class="logo">
-                <img src="<?php echo base_url('uploads/') . get_setting('logo'); ?>" alt="">
-                <span><?php echo get_setting('site_name'); ?></span>
+        <div class="container-header">
+            <div class="header">
+                <div class="sub-header">
+                    <div class="logo">
+                        <a href="<?= base_url('') ?>">
+                            <img src="<?php echo base_url('uploads/') . get_setting('logo'); ?>" alt="">
+                            <span><?php echo get_setting('site_name'); ?></span>
+                        </a>
+                        </div>
+                    <form action="<?= base_url('product/search'); ?>" class="search_box" method="get">
+                        <input type="text" name="query" placeholder="Tulis nama produk ...">
+                        <button class="cari">Cari</button>
+                        <button class="cari2">
+                            <iconify-icon icon="iconamoon:search"></iconify-icon>
+                        </button>
+                    </form>
+                    <button class="hamburger">
+                        <iconify-icon icon="clarity:menu-line"></iconify-icon>
+                    </button>
+                    <a href="<?= base_url('guide') ?>" class="guide">
+                        <iconify-icon icon="tabler:album" width="1.2vw" style="color: white;" height="1.2vw"></iconify-icon> Guide
+                    </a>
+                </div>
             </div>
-        <form action="<?= base_url('product/search'); ?>" class="search_box" method="get">
-            <input type="text" name="query" placeholder="Cari..">
-            <button type="submit" style="border: none; background: none;">
-                <iconify-icon icon="iconamoon:search"></iconify-icon>
-            </button>
-        </form>
-            <button class="hamburger">
-                <iconify-icon icon="clarity:menu-line"></iconify-icon>
-            </button>
-            <a href="<?= base_url('guide') ?>" class="guide">
-            <iconify-icon icon="tabler:album" width="2.2vw" style="color: white;" height="2.2vw"></iconify-icon> Guide
-            </a>
-        </div>
-        <div class="sidebar">
-            <?php
-            $CI =& get_instance();
-            $menu_items = $CI->Menu_model->get_menus();
-            ?>
-            <br>
-             <div class="menu">
-                    <a href="<?= base_url('guide') ?>">    
-                    <iconify-icon icon="tabler:album" width="15" style="color: white;" height="15"></iconify-icon>   Guide
-                    </a>
-                </div>
-            <?php foreach ($menu_items as $item): ?>
+            <div class="sidebar">
+                <?php
+                $CI =& get_instance();
+                $menu_items = $CI->Menu_model->get_menus();
+                ?>
                 <br>
-                    <div class="menu">
-                    <a href="<?php echo $item->link ?>">    
-                        <img src="<?= base_url('uploads/icons/'.$item->icon) ?>" width="15" alt=""> &nbsp;  <?= $item->title; ?>
-                    </a>
-                </div>
-            <?php endforeach; ?>
-        </div>
-        <div class="layout_dashboard">
+                 <div class="menu">
+                        <a href="<?= base_url('guide') ?>">    
+                        <iconify-icon icon="tabler:album" width="25" style="color: white;" height="25"></iconify-icon>&nbsp;Guide
+                        </a>
+                    </div>
+                <?php foreach ($menu_items as $item): ?>
+                    <br>
+                        <div class="menu">
+                            <a href="<?php echo $item->link ?>">    
+                              <?=  $item->icon ."&nbsp;". $item->title; ?>
+                            </a>
+                        </div>
+                <?php endforeach; ?>
+            </div>
             <div class="fixed_menu">
                 <a href="<?php echo site_url(''); ?>">
                     <div class="svg-container">
@@ -443,9 +566,13 @@
                 </a>
                 <a href="<?php echo site_url('contact'); ?>">
                     <div class="box_fixed_menu <?php echo ($active_page == 'contact') ? 'active' : ''; ?>">
-                    <iconify-icon icon="ci:user-card-id"></iconify-icon>
+                    <iconify-icon class="contact-icon" icon="ci:user-card-id"></iconify-icon>
                         <h3>Contact</h3>
                     </div>
                 </a>
             </div>
+        </div>
+    <div class="container-gap">
+        <div class="layout_dashboard">
             <div class="layout_dekstop">
+                <div class="layout_content_dekstop">
